@@ -92,29 +92,34 @@ class condition extends \core_availability\condition {
      * @return bool
      */
     public function is_available($not, info $info, $grabthelot, $userid) {
-        global $PAGE;
+        global $DB;
+
         $course = $info->get_course();
 
         $allow = true;
-        $manager = new course_enrolment_manager($PAGE, $course);
-        $userenrolments = $manager->get_user_enrolments($userid);
+        // Get all enrolments of user.
+        $userenrolments = $this->get_user_enrolments($course, $userid);
         $userenrolids = array_column($userenrolments , 'enrolid');
+
         if (!in_array($this->activeenrolid, $userenrolids)) {
+            // If non exist matching... 
             $allow = false;
         } else {
             switch ($this->activeenrolvalid) {
                 case 'enabled': {
                     // Don't check dates.
                     if ($userenrolments[$this->activeenrolid]->status != 0) {
+                        // Bad case : user enrolment is disabled.
                         $allow = false;
                     }
                     break;
                 }
                 case 'valid': {
-                    if ($userenrolments[$this->activeenrolid]->status != 0 &&
+                    if ($userenrolments[$this->activeenrolid]->status != 0 ||
                         (($userenrolments[$this->activeenrolid]->timestart > time()) ||
                         (($userenrolments[$this->activeenrolid]->timeend > 0) &&
                             ($userenrolments[$this->activeenrolid]->timeend < time())))) {
+                        // Bad case : user enrolment is disabled, or we are out of dates.
                         $allow = false;
                     }
                     break;
@@ -163,10 +168,41 @@ class condition extends \core_availability\condition {
                         'availability_activeenrol', $name);
             }
             case 'valid': {
-                return get_string($not ? 'requires_notvaliddenrol' : 'requires_validdenrol',
+                return get_string($not ? 'requires_notvalidenrol' : 'requires_validenrol',
                         'availability_activeenrol', $name);
             }
         }
+    }
+
+    protected function get_user_enrolments($course, $userid) {
+        global $DB;
+
+        $sql = "
+            SELECT
+                ue.id,
+                ue.status,
+                ue.enrolid,
+                ue.timestart,
+                ue.timeend,
+                e.name
+            FROM
+                {user_enrolments} ue,
+                {enrol} e
+            WHERE
+                ue.enrolid = e.id AND
+                e.courseid = ? AND
+                e.status = 0 AND
+                ue.userid = ?
+        ";
+        $userenrolments = $DB->get_records_sql($sql, [$course->id, $userid]);
+        return $userenrolments;
+    }
+
+    /**
+     * was introduced later in 3.11 in the core class.
+     */
+    protected function description_format_string($str) {
+        return format_string($str);
     }
 
     /**
@@ -245,12 +281,10 @@ class condition extends \core_availability\condition {
         $course = $info->get_course();
         // List users for this course who match the condition.
 
-        $manager = new course_enrolment_manager($PAGE, $course);
-
         // Filter the user list.
         $result = array();
         foreach ($users as $id => $user) {
-            $userenrolments = $manager->get_user_enrolments($id);
+            $userenrolments = $this->get_user_enrolments($course, $id);
             $allow = false;
 
             foreach ($userenrolments as $userenrolment) {
