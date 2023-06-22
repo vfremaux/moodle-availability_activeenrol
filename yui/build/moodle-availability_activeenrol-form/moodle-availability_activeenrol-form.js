@@ -88,6 +88,9 @@ M.availability_activeenrol.form.fillValue = function(value, node) {
     } else if (selected !== 'any') {
         value.id = parseInt(selected, 10);
     }
+
+    var selected = node.one('select[name=valid]').get('value');
+    value.valid = selected;
 };
 
 M.availability_activeenrol.form.fillErrors = function(errors, node) {
@@ -97,6 +100,10 @@ M.availability_activeenrol.form.fillErrors = function(errors, node) {
     // Check enrolmentmethod item id.
     if (value.id && value.id === 'choose') {
         errors.push('availability_activeenrol:error_selectactiveenrol');
+    }
+
+    if (value.valid && value.valid === 'choose') {
+        errors.push('availability_activeenrol:error_selectstate');
     }
 };
 
