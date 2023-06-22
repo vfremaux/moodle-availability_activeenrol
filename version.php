@@ -26,9 +26,9 @@
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->version = 2023060900;
-$plugin->requires = 2021041900;
+$plugin->requires = 2022120600;
 $plugin->component = 'availability_activeenrol';
-$plugin->release = '4.0.0 (Build 2023060900)';
+$plugin->release = '4.1.0 (Build 2023060900)';
 $plugin->maturity = MATURITY_STABLE;
 
-$plugin->codeincrement = '4.0.0001';
+$plugin->codeincrement = '4.1.0001';
