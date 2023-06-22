@@ -19,7 +19,7 @@
  *
  * @package availability_activeenrol
  * @copyright 2022 Jorge C.
- * @copyright 2022 Modified by Valery Fremaux
+ * @copyright 2023 Modified by Valery Fremaux
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
