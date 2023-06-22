@@ -26,6 +26,7 @@ $string['description'] = 'Seuls les étudiants inscrits selon cette modalité d\
 $string['missing'] = '(Modalité d\'inscription manquante)';
 $string['pluginname'] = 'Restriction par inscription avec critère de validité';
 $string['error_selectactiveenrol'] = 'Vous devez choisir une modalité d\'inscription.';
+$string['error_selectstate'] = 'Vous devez choisir un état déclencheur.';
 $string['requires_enrol'] = 'Vous disposez d\'une inscription <strong>{$a}</strong>';
 $string['requires_notenrol'] = 'Vous ne disposez pas d\'une inscription <strong>{$a}</strong>';
 $string['requires_validenrol'] = 'Vous disposez d\'une inscription <strong>{$a}</strong> valide';
