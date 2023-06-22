@@ -19,16 +19,16 @@
  *
  * @package availability_activeenrol
  * @copyright 2022 Jorge C.
- * @copyright 2022 Modified by Valery Fremaux
+ * @copyright 2023 Modified by Valery Fremaux
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->version = 2023060900;
-$plugin->requires = 2020060900;
+$plugin->requires = 2021041900;
 $plugin->component = 'availability_activeenrol';
-$plugin->release = '3.9.0 (Build 2023060900)';
+$plugin->release = '4.0.0 (Build 2023060900)';
 $plugin->maturity = MATURITY_STABLE;
 
-$plugin->codeincrement = '3.9.0001';
+$plugin->codeincrement = '4.0.0001';
