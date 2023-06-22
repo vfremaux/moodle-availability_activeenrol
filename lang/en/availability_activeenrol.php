@@ -26,6 +26,7 @@ $string['description'] = 'Allow only students who belong to a specified enrolmen
 $string['missing'] = '(Missing enrolment method)';
 $string['pluginname'] = 'Restriction by enrolment method with valid option';
 $string['error_selectactiveenrol'] = 'You must select a enrolment method.';
+$string['error_selectstate'] = 'You must select a enrol state.';
 $string['requires_enrol'] = 'You are enrolled in <strong>{$a}</strong>';
 $string['requires_notenrol'] = 'You are not enrolled inhave <strong>{$a}</strong>';
 $string['requires_validenrol'] = 'You have valid enrollement in <strong>{$a}</strong>';
