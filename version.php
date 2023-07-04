@@ -30,5 +30,6 @@ $plugin->requires = 2021041900;
 $plugin->component = 'availability_activeenrol';
 $plugin->release = '4.0.0 (Build 2023060900)';
 $plugin->maturity = MATURITY_STABLE;
+$plugin->supported = [311, 401];
 
 $plugin->codeincrement = '4.0.0001';
