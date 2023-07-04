@@ -205,7 +205,7 @@ class condition extends \core_availability\condition {
     /**
      * was introduced later in 3.11 in the core class.
      */
-    public static function description_format_string($str) {
+    public static function description_format_string(string $str) : string {
         return format_string($str);
     }
 
