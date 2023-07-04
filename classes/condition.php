@@ -81,6 +81,7 @@ class condition extends \core_availability\condition {
         }
         return $result;
     }
+
     /**
      * Check if the item is available with this restriction.
      *
@@ -174,12 +175,16 @@ class condition extends \core_availability\condition {
         }
     }
 
+    /**
+     * Get all enrolments, valid or not, active or not.
+     */
     protected function get_user_enrolments($course, $userid) {
         global $DB;
 
         $sql = "
             SELECT
-                ue.id,
+                e.id,
+                ue.id as enrolid,
                 ue.status,
                 ue.enrolid,
                 ue.timestart,
@@ -191,7 +196,6 @@ class condition extends \core_availability\condition {
             WHERE
                 ue.enrolid = e.id AND
                 e.courseid = ? AND
-                e.status = 0 AND
                 ue.userid = ?
         ";
         $userenrolments = $DB->get_records_sql($sql, [$course->id, $userid]);
@@ -201,7 +205,7 @@ class condition extends \core_availability\condition {
     /**
      * was introduced later in 3.11 in the core class.
      */
-    protected function description_format_string($str) {
+    public static function description_format_string($str) {
         return format_string($str);
     }
 
