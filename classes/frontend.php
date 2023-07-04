@@ -93,4 +93,8 @@ class frontend extends \core_availability\frontend {
         // Only show this option if there are some enrolment methods.
         return count($this->get_all_enrolmentmethods($course->id)) > 0;
     }
+
+    protected function get_javascript_strings() {
+        return array('enabled', 'any', 'valid');
+    }
 }
