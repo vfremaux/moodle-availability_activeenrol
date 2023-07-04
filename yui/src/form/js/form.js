@@ -3,6 +3,8 @@
  *
  * @module moodle-availability_activeenrol-form
  */
+// jshint unused:false, undef:false
+
 M.availability_activeenrol = M.availability_activeenrol || {};
 
 /**
@@ -31,7 +33,9 @@ M.availability_activeenrol.form.initInner = function(enrolmentmethods) {
 
 M.availability_activeenrol.form.getNode = function(json) {
     // Create HTML structure.
-    var html = '<label><span class="pr-3">' + M.util.get_string('title', 'availability_activeenrol') + ' ' +
+    var strings = M.str.availability_activeenrol;
+
+    var html = '<label><span class="pr-3">' + strings.title + ' ' +
             '<span class="availability-activeenrol">' +
             '<select name="id" class="custom-select">' +
             '<option value="choose">' + M.util.get_string('choosedots', 'moodle') + '</option>';
@@ -42,9 +46,9 @@ M.availability_activeenrol.form.getNode = function(json) {
     }
     html += '</select>';
     html += '<select name="valid" class="custom-select">' +
-            '<option value="enabled">' + M.util.get_string('enabled', 'availability_activeenrol') + '</option>' +
-            '<option value="valid">' + M.util.get_string('valid', 'availability_activeenrol') + '</option>' +
-            '<option value="any">' + M.util.get_string('any', 'availability_activeenrol') + '</option>';
+            '<option value="enabled">' + strings.enabled + '</option>' +
+            '<option value="valid">' + strings.valid + '</option>' +
+            '<option value="any">' + strings.any + '</option>';
     html += '</select>';
     html += '</span></label>';
     var node = Y.Node.create('<span class="form-inline">' + html + '</span>');
