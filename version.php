@@ -25,11 +25,11 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version = 2023060900;
-$plugin->requires = 2021041900;
+$plugin->version = 2025022100;
+$plugin->requires = 2022041900;
 $plugin->component = 'availability_activeenrol';
-$plugin->release = '4.0.0 (Build 2023060900)';
+$plugin->release = '4.5.0 (Build 2023060900)';
 $plugin->maturity = MATURITY_STABLE;
-$plugin->supported = [311, 401];
+$plugin->supported = [401, 405];
 
-$plugin->codeincrement = '4.0.0001';
+$plugin->codeincrement = '4.5.0001';
